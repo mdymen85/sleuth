@@ -13,14 +13,14 @@ public class QueueConsumerConfiguration {
     @Bean
     public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
         final var rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
+//        rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
         return rabbitTemplate;
     }
 
-    @Bean
-    public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
+//    @Bean
+//    public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
+//        return new Jackson2JsonMessageConverter();
+//    }
 
     @Bean
     public ObjectMapper objectMapper() {

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(value = "sleuthclient",
-        url = "http://localhost:8081",
+        url = "${application.server-url:http://localhost:8081}",
         configuration = FeignConfiguration.class)
 public interface ITestSleuthClient {
 

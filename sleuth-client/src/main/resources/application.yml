@@ -1,3 +1,6 @@
+application:
+  server-url: ${env.application.server-url:http://localhost:8081}
+
 
 feign:
   client:
