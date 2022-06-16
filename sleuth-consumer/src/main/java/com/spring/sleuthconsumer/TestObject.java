@@ -1,4 +1,4 @@
-package com.spring.sleuthserver;
+package com.spring.sleuthconsumer;
 
 import lombok.Data;
 import lombok.ToString;
