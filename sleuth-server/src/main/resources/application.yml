@@ -10,3 +10,8 @@ spring:
     port: 5672
     username: guest
     password: guest
+#  sleuth:
+#    propagation-keys:
+#      - DigitalAuthentication
+  application:
+    name: sleuth-server-test

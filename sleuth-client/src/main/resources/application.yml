@@ -11,6 +11,8 @@ feign:
         loggerLevel: basic
 
 spring:
-  sleuth:
-    propagation-keys:
-      - DigitalAuthentication
+#  sleuth:
+#    propagation-keys:
+#      - DigitalAuthentication
+  application:
+    name: sleuth-client-test

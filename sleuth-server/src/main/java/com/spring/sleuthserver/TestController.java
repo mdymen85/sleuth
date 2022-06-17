@@ -5,10 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -20,7 +19,9 @@ public class TestController {
     private final QueueSenderService queueSenderService;
 
     @RequestMapping(value = "/v1/server", method = RequestMethod.POST)
-    public ResponseEntity<TestObject> process(@RequestBody TestObject testObject) throws JsonProcessingException {
+    public ResponseEntity<TestObject> process(@RequestBody TestObject testObject, @RequestHeader Map<String, String> headers) throws JsonProcessingException {
+
+        log.info("Headers {}", headers);
 
         log.info("Currente traceId = {}", tracer.currentTraceContext().context().traceId());
 

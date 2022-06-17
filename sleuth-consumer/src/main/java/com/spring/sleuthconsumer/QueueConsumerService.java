@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -21,13 +22,14 @@ import java.util.Map;
 public class QueueConsumerService {
 
     private final ObjectMapper objectMapper;
+    private final Tracer tracer;
 
     @RabbitListener(queues = {"${queue.name}"})
-    public void receive(String message, @Headers Map<String, Object> headers) throws IOException {
+    public void receive(Message message) throws IOException {
 
-        log.info("headers {}", headers);
+        log.info("Trace id = {}", tracer.currentTraceContext().context().traceId());
 
-        var testObject = objectMapper.readValue(message, TestObject.class);
+        var testObject = objectMapper.readValue(message.getBody(), TestObject.class);
 
         log.info("Receiveing by queue {}", testObject);
     }
