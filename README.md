@@ -37,5 +37,11 @@ curl --location --request POST 'localhost:8080/api/v1/client' \
 }'
 ```
 
+### Docker for Rabbit MQ
+
+```
+docker run -d --hostname my-rabbit -p 15672:15672 -p 5672:5672 --name some-rabbit rabbitmq:3-management
+```
+
 ### Attention points
 The **traceId** seems to be a random string, because of that im curious if its possible to define an **UUID** as **traceId** an also as in id for idempotency treatment.
